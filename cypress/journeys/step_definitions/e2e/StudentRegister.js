@@ -1,83 +1,52 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+
 const envi = Cypress.env('ENV');
-const url = Cypress.env(`${envi}`).url_automationexercise;
-Given("el usuario abre la web de automation exercise", function () {
+const url = Cypress.env(`${envi}`).url_test;
+
+Given("el usuario abre la web de demoqa", function () {
    cy.visit(`${url}`)
 });
-When("el usuario hace clic en el boton signup-login", function () {
-   cy.get('a[href="/login"]').click();
+
+
+When("el usuario ingresa el nombre", function () {
+   cy.get('#firstName').type("Tomas");
 });
-Then('el sistema muestra el titulo New User Signup!', function () {
-   cy.get('.signup-form > h2').contains("New User Signup!").should('be.visible');
+
+
+When("el usuario ingresa el apellido", function () {
+   cy.get('#lastName').type("Rios");
 });
-When('el usuario ingresa el nombre y el email', function () {
-   let name = 'Tomas Rios';
-   let email = 'tom-9@gmail.com';
-   cy.get('input[data-qa="signup-name"]').type(name);
-   cy.get('input[data-qa="signup-email"]').type(email);
-   // Guardamos el nombre y el email en variables de cypress
-   cy.wrap(name).as('userName');
-   cy.wrap(email).as('userEmail');
+
+
+When("el usuario ingresa el email", function () {
+   cy.get('#userEmail').type("test@gmail.com");
 });
-When('el usuario hace clic en el boton signup', function () {
-   cy.get('button[data-qa="signup-button"]').click();
+
+When("el usuario selecciona el genero", function () {
+   cy.get('#genterWrapper > .col-md-9 > :nth-child(2)').click();
 });
-When('el usuario selecciona su genero', function () {
-   cy.get('#id_gender1').click();
+
+When("el usuario ingresa su fecha de nacimiento", function () {
+   cy.get('#dateOfBirthInput').type("15/02/1990");
 });
-When('el usuario verifica que el nombre este precargado', function () {
-   // Obtenemos la variable userName de cypress
-   cy.get('@userName').then(nameUser => {
-      cy.get('input[id="name"]').should('have.value', nameUser);
-   })
+
+When("el usuario ingresa su numero de telefono", function () {
+   cy.get('#userNumber').type("3517253647");
 });
-When('el usuario verifica que el email esta precargado', function () {
-   // Obtenemos la variable userEmail de cypress
-   cy.get('@userEmail').then(emailUser => {
-      cy.get('input[id="email"]').should('have.value', emailUser);
-   })
+
+When("el usuario selecciona el hobbie sports", function () {
+   cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(1)').click();
 });
-When('el usuario ingresa la contraseña', function () {
-   cy.get('[data-qa="password"]').type('12345');
+
+When("el usuario ingresa su direccion", function () {
+   cy.get('#currentAddress').click();
 });
-When('el usuario selecciona la fecha de nacimiento', function () {
-   cy.get('select[id="days"]').select('10').should('have.value', '10');
-   cy.get('select[id="months"]').select('5').should('have.value', '5');
-   cy.get('select[id="years"]').select('1990').should('have.value', '1990');
+
+When("el usuario hace clic en el boton submit", function () {
+   cy.get('#submit').click();
 });
-When('el usuario ingresa el nombre y apellido', function () {
-    cy.get('input[id="first_name"]').type('Tomas');
-    cy.get('input[id="last_name"]').type('Rios');
-});
-When('el usuario ingresa la compania', function () {
-    cy.get('input[id="company"]').type('Kiuvi');
-});
-When('el usuario ingresa la direccion principal y la direccion 2', function () {
-    cy.get('input[id="address1"]').type('Calle Falsa 123');
-      cy.get('input[id="address2"]').type('Departamento 1A');
-});
-When('el usuario selecciona el pais', function () {
-   cy.get('select[id="country"]').select('Canada').should('have.value', 'Canada');
-});
-When('el usuario ingresa el estado, la ciudad, el codigo postal y el movil', function () {
-   cy.get('input[id="state"]').type('Buenos Aires');
-   cy.get('input[id="city"]').type('La Plata');
-   cy.get('input[id="zipcode"]').type('1900');
-   cy.get('input[id="mobile_number"]').type('+5492211234567');
-});
-When('el usuario hace clic en el boton create account', function () {
-   cy.get('button[data-qa="create-account"]').click();
-});
-Then('el sistema muestra el mensaje ACCOUNT CREATED!', function () {
-   cy.get('b').contains("Account Created!").should('be.visible');
-});
-When('el usuario hace clic en el boton continue', function () {
-   cy.get('a[data-qa="continue-button"]').click();
-   cy.wait(3000);
-});
-When('el usuario hace clic en el boton delete account', function () {
-   cy.get('a[href="/delete_account"]').click();
-});
-Then('el sistema muestra el mensaje ACCOUNT DELETED!', function () {
-   cy.get('b').contains("Account Deleted!").should('be.visible');
+
+Then("el sistema muestra el mensaje de exito {string}", function (expectedMessage) {
+   const message = cy.get('#example-modal-sizes-title-lg');
+   message.should('have.text', expectedMessage)
 });
