@@ -10,7 +10,7 @@ const url = Cypress.env(`${envi}`).url;
 
 
 Given("el usuario abre la web de Practicas", function () {
-    cy.visit(`${url}`)
+    cy.visit(`${url}`+`/practice-test-login/`)
 });
 
 When("ingresa el usuario {string}", function (username) {
