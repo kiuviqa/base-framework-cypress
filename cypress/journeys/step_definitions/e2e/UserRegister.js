@@ -4,6 +4,7 @@ import LoginPage from '../../../pages/automationExercise/LoginAutomationExercise
 import SingupPage from '../../../pages/automationExercise/singupPage';
 import AccountCreatedPage from '../../../pages/automationExercise/AccountCreatedPage';
 import DeletedAccountPage from '../../../pages/automationExercise/DeletedAccountPage';
+import DataGenerator from '../../../support/DataGenerator';
 
 
 const envi = Cypress.env('ENV');
@@ -27,8 +28,8 @@ Then('el sistema muestra el titulo New User Signup!', function () {
 
 
 When('el usuario ingresa el nombre y el email', function () {
-   let name = 'Tomas Rios';
-   let email = 'tom-100@gmail.com';
+   let name = DataGenerator.getFirstName();
+   let email = DataGenerator.getEmail();
    
    LoginPage.enterName(name);
    LoginPage.enterEmail(email);
@@ -70,26 +71,26 @@ When('el usuario ingresa la contraseña', function () {
 
 
 When('el usuario selecciona la fecha de nacimiento', function () {
-   SingupPage.selectDay('10');
-   SingupPage.selectMonth('5');
-   SingupPage.selectYear('1990');
+   SingupPage.selectDay(DataGenerator.getRandomNumber(1, 28).toString());
+   SingupPage.selectMonth(DataGenerator.getRandomNumber(1, 12).toString());
+   SingupPage.selectYear(DataGenerator.getRandomNumber(1900, 2023).toString());
 });
 
 
 When('el usuario ingresa el nombre y apellido', function () {
-   SingupPage.enterFirstName('Tomas');
-   SingupPage.enterLastName('Rios');
+   SingupPage.enterFirstName(DataGenerator.getFirstName());
+   SingupPage.enterLastName(DataGenerator.getLastName());
 });
 
 
 When('el usuario ingresa la compania', function () {
-   SingupPage.enterCompany('Kiuvi'); 
+   SingupPage.enterCompany(DataGenerator.getCompany()); 
 });
 
 
 When('el usuario ingresa la direccion principal y la direccion 2', function () {
-   SingupPage.enterAddress1('Calle Falsa 123');
-   SingupPage.enterAddress2('Departamento 1A');
+   SingupPage.enterAddress1(DataGenerator.getAddress());
+   SingupPage.enterAddress2(DataGenerator.getAddress());
 });
 
 
@@ -99,11 +100,12 @@ When('el usuario selecciona el pais', function () {
 
 
 When('el usuario ingresa el estado, la ciudad, el codigo postal y el movil', function () {
-   SingupPage.enterState('Buenos Aires');
-   SingupPage.enterCity('La Plata');
-   SingupPage.enterZipcode('1900');
-   SingupPage.enterMobileNumber('+5492211234567');
+  SingupPage.enterState(DataGenerator.getState());
+  SingupPage.enterCity(DataGenerator.getCity());
+  SingupPage.enterZipcode(DataGenerator.getRandomNumber(10000, 99999).toString());
+  SingupPage.enterMobileNumber(DataGenerator.getPhoneNumber());
 });
+
 
 
 When('el usuario hace clic en el boton create account', function () {
