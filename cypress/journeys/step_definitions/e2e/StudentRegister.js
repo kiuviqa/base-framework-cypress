@@ -1,6 +1,7 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import RegisterPage from '../../../pages/demoqa/RegisterPage';
 import SuccessPage from '../../../pages/demoqa/SuccessPage';
+import DataGenerator from '../../../support/DataGenerator';
 
 const envi = Cypress.env('ENV');
 const url = Cypress.env(`${envi}`).url_test;
@@ -11,17 +12,17 @@ Given("el usuario abre la web de demoqa", function () {
 
 
 When("el usuario ingresa el nombre", function () {
-   RegisterPage.enterFirstName("Tomas");
+   RegisterPage.enterFirstName(DataGenerator.getNombre());
 });
 
 
 When("el usuario ingresa el apellido", function () {
-   RegisterPage.enterLastName("Rios");
+   RegisterPage.enterLastName(DataGenerator.getApellido());
 });
 
 
 When("el usuario ingresa el email", function () {
-   RegisterPage.enterEmail("test@gmail.com");
+   RegisterPage.enterEmail(DataGenerator.getEmail());
 });
 
 When("el usuario selecciona el genero", function () {
@@ -33,7 +34,7 @@ When("el usuario ingresa su fecha de nacimiento", function () {
 });
 
 When("el usuario ingresa su numero de telefono", function () {
-   RegisterPage.enterPhoneNumber("1234567890");
+   RegisterPage.enterPhoneNumber(DataGenerator.getMobileNumber());
 });
 
 When("el usuario selecciona el hobbie sports", function () {
@@ -41,7 +42,7 @@ When("el usuario selecciona el hobbie sports", function () {
 });
 
 When("el usuario ingresa su direccion", function () {
-   RegisterPage.enterAddress("Calle Falsa 123");
+   RegisterPage.enterAddress(DataGenerator.getAddress());
 });
 
 When("el usuario hace clic en el boton submit", function () {

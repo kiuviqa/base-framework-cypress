@@ -28,7 +28,9 @@ Then('el sistema muestra el titulo New User Signup!', function () {
 
 
 When('el usuario ingresa el nombre y el email', function () {
-   let name = DataGenerator.getFirstName();
+   //let name = 'Tomas Rios';
+   //let email = 'tom-102@gmail.com';
+   let name = DataGenerator.getNombre();
    let email = DataGenerator.getEmail();
    
    LoginPage.enterName(name);
@@ -66,20 +68,20 @@ When('el usuario verifica que el email esta precargado', function () {
 
 
 When('el usuario ingresa la contraseña', function () {
-   SingupPage.enterPassword('12345');
+   SingupPage.enterPassword(DataGenerator.getPassword());
 });
 
 
 When('el usuario selecciona la fecha de nacimiento', function () {
-   SingupPage.selectDay(DataGenerator.getRandomNumber(1, 28).toString());
-   SingupPage.selectMonth(DataGenerator.getRandomNumber(1, 12).toString());
-   SingupPage.selectYear(DataGenerator.getRandomNumber(1900, 2023).toString());
+   SingupPage.selectDay(DataGenerator.getRandomNumber(1,28).toString());
+   SingupPage.selectMonth(DataGenerator.getRandomNumber(1,12).toString());
+   SingupPage.selectYear(DataGenerator.getRandomNumber(1900,2000).toString());
 });
 
 
 When('el usuario ingresa el nombre y apellido', function () {
-   SingupPage.enterFirstName(DataGenerator.getFirstName());
-   SingupPage.enterLastName(DataGenerator.getLastName());
+   SingupPage.enterFirstName(DataGenerator.getNombre());
+   SingupPage.enterLastName(DataGenerator.getApellido());
 });
 
 
@@ -95,17 +97,17 @@ When('el usuario ingresa la direccion principal y la direccion 2', function () {
 
 
 When('el usuario selecciona el pais', function () {
-   SingupPage.selectCountry('Canada');
+   SingupPage.selectCountry("Canada");
 });
 
 
 When('el usuario ingresa el estado, la ciudad, el codigo postal y el movil', function () {
-  SingupPage.enterState(DataGenerator.getState());
-  SingupPage.enterCity(DataGenerator.getCity());
-  SingupPage.enterZipcode(DataGenerator.getRandomNumber(10000, 99999).toString());
-  SingupPage.enterMobileNumber(DataGenerator.getPhoneNumber());
+   SingupPage.enterState(DataGenerator.getState());
+   SingupPage.enterCity(DataGenerator.getCity());
+   SingupPage.enterZipcode(DataGenerator.getZipCode());
+   //SingupPage.enterZipcode(DataGenerator.getRandomNumber(1000,5000));
+   SingupPage.enterMobileNumber(DataGenerator.getMobileNumber());
 });
-
 
 
 When('el usuario hace clic en el boton create account', function () {
