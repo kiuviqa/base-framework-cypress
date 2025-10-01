@@ -1,5 +1,6 @@
 Feature: Busqueda de productos
 
+@smoke
 Scenario: Buscar un producto exitosamente
     Given el usuario abre la web de automation exercise
     When el usuario hace clic en el boton products

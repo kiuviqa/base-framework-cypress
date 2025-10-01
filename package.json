@@ -7,21 +7,23 @@
     "cypress:open:dev:chrome": "cypress open --e2e --browser chrome -e ENV=DEV",
     "cypress:open:dev:edge": "cypress open --e2e --browser edge -e ENV=DEV", 
     "cypress:open:dev:firefox": "cypress open --e2e --browser firefox -e ENV=DEV",
-    "cypress:runner:e2e:dev": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=DEV",  
-    "cypress:runner:e2e:dev:edge": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser edge -e ENV=DEV",  
+
+    "cypress:runner:e2e:dev:chrome": "cypress run --spec cypress/journeys/features/e2e/**/Login.feature --browser chrome -e ENV=DEV,TAGS=@clase-8",  
+    "cypress:runner:api:dev:chrome": "cypress run --spec cypress/journeys/features/api/**/*.feature --browser chrome -e ENV=DEV",  
 
 
+    "cypress:runner:e2e:dev:smoke": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=DEV,TAGS=@smoke",  
 
-    "cypress:open:tst": "cypress open --e2e --browser chrome -e ENV=TST",
+
     "cypress:open:tst:chrome": "cypress open --e2e --browser chrome -e ENV=TST",
     "cypress:open:tst:edge": "cypress open --e2e --browser edge -e ENV=TST", 
     "cypress:open:tst:firefox": "cypress open --e2e --browser firefox -e ENV=TST",
 
+    "cypress:runner:e2e:tst:chrome": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=TST",
+    "cypress:runner:api:tst:chrome": "cypress run --spec cypress/journeys/features/api/**/*.feature --browser chrome -e ENV=TST"
 
-    "cypress:runner:e2e:tst": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=TST",
   
 
-    "cypress:test:all" : "npm-run-all cypress:runner:e2e:dev cypress:runner:e2e:dev:edge"
   },
   "keywords": [
     "Cypress",
@@ -46,7 +48,6 @@
     "esbuild": "latest",
     "eslint": "^9.22.0",
     "eslint-plugin-cypress": "^4.2.0",
-    "multiple-cucumber-html-reporter": "^3.6.0",
     "npm-run-all": "^4.1.5"
   },
   "optionalDependencies": {

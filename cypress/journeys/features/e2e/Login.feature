@@ -10,7 +10,7 @@ Feature: Frontend - Login
     And el sistema muestra el mensaje "Congratulations student. You successfully logged in!"
 
 
-  @Frontend @Example @TC-2 
+  @Frontend @Example @TC-2 @smoke
   Scenario: Login con usuario no valido
     Given el usuario abre la web de Practicas
     When ingresa el usuario "studentIncorrect"
@@ -19,7 +19,7 @@ Feature: Frontend - Login
     Then el sistema muestra el mensaje de error "Your username is invalid!"
 
 
-  @Frontend @Example @TC-2
+  @Frontend @Example @TC-2 @smoke
   Scenario: Login con password no valida
     Given el usuario abre la web de Practicas
     When ingresa el usuario "student"
